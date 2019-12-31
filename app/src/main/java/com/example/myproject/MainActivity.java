@@ -20,22 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(ProgressStatus < 100){
-                    ProgressStatus++;
-                    android.os.SystemClock.sleep(50);
-                    myHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            myProgressBar.setProgress(ProgressStatus);
-                        }
-                    });
-                }
-            }
-        }).start();
     }
 }
