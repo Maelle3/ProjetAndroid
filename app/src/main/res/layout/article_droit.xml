@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txtTitre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
@@ -24,7 +24,7 @@
             android:layout_weight="0.75"/>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/txtAuteur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
@@ -33,7 +33,7 @@
 
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/txtDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"

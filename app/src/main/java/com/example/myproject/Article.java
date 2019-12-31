@@ -6,6 +6,7 @@ public class Article {
     private String titre;
     private String auteur;
     private String date;
+    private String source;
     private String description;
     private String url;
     private String image;
@@ -32,6 +33,10 @@ public class Article {
 
     public String getImage() {
         return image;
+    }
+
+    public String getSource() {
+        return source;
     }
 
     public Article(String titre, String auteur, String date, String description, String url, String image) {

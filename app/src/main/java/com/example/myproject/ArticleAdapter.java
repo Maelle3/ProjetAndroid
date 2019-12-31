@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
 /* On surcharge ArrayAdapter */
 
 public class ArticleAdapter extends BaseAdapter {
@@ -31,43 +33,53 @@ public class ArticleAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if (convertView == null) {holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.livre_item, null);
+        if (convertView == null){
+            holder = new ViewHolder();
+            if (position % 2 == 0){
+                convertView = inflater.inflate(R.layout.article_gauche, null);
+            }
+            else{
+                convertView = inflater.inflate(R.layout.article_droit, null);
+            }
             holder.tvTitre = (TextView) convertView.findViewById(R.id.txtTitre);
-            holder.tvAuteur = (TextView) convertView
-                    .findViewById(R.id.txtAuteur);
+            holder.tvAuteur = (TextView) convertView.findViewById(R.id.txtAuteur);
+            holder.tvDate = (TextView) convertView.findViewById(R.id.txtDate);
+
             convertView.setTag(holder);
-        } else {
+        }
+        else {
             Log.v("test", "convertView is not null");
             holder = (ViewHolder) convertView.getTag();
         }
-        Livre livre = biblio.get(position);
-        holder.tvTitre.setText(livre.getTitre());
-        holder.tvAuteur.setText(livre.getAuteur());
+        Article article = articles.get(position);
+        holder.tvTitre.setText(article.getTitre());
+        holder.tvAuteur.setText(article.getAuteur());
+        holder.tvDate.setText(article.getDate());
+        holder.tvSource.setText(article.getSource());
+
+        ImageView image = convertView.findViewById(R.id.imageView);
+        if (article.getImage() != "null"){
+            Picasso.get().load(article.getImage()).into(image);
+        }
+        else image.setImageResource(R.drawable.icone_news_background);
+
         return convertView;
     }
-    /**
-     * Retourne le nombre d'éléments
-     */
+
     @Override
     public int getCount() {
-// TODO Auto-generated method stub
-        return biblio.size();
+        return articles.size();
     }
-    /**
-     * Retourne l'item à la position
-     **/
-    public Livre getItem(int position) {
-        // TODO Auto-generated method stub
-        return biblio.get(position);
+
+    @Override
+    public Article getItem(int position) {
+        return articles.get(position);
     }
-    /**
-     * Retourne la position de l'item
-     * */
+
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
+
 
 }
