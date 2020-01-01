@@ -11,6 +11,14 @@ public class Article {
     private String url;
     private String image;
 
+    public Article(String titre, String auteur, String date, String description, String url, String image) {
+        this.titre = titre;
+        this.auteur = auteur;
+        this.date = date;
+        this.description = description;
+        this.url = url;
+        this.image = image;
+    }
     public String getTitre() {
         return titre;
     }
@@ -39,12 +47,4 @@ public class Article {
         return source;
     }
 
-    public Article(String titre, String auteur, String date, String description, String url, String image) {
-        this.titre = titre;
-        this.auteur = auteur;
-        this.date = date;
-        this.description = description;
-        this.url = url;
-        this.image = image;
-    }
 }
