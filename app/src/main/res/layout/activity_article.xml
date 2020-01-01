@@ -43,7 +43,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/myListView"
+        android:id="@+id/ListViewArticles"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="0.9"

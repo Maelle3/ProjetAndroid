@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -30,20 +31,28 @@ public class ArticleActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent monIntent = new Intent(ArticleActivity.this,
                         SourcesActivity.class);
-                // monIntent.putExtra("key1", "Epona");
-                //startActivity(monIntent);
                 startActivity(monIntent);
             }
         });
+
+
+
         try {
+            JSONObject source1 = new JSONObject(getIntent().getStringExtra("jsonobject"));
+            json_articles = source1.getJSONArray("articles");
             this.RemplirLaListe();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ListView myListView = (ListView) findViewById(R.id.myListView);
+        ListView myListView = (ListView) findViewById(R.id.ListViewArticles);
         ArticleAdapter adapter = new ArticleAdapter(this, liste_articles);
         myListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+
+
+
+
     }
 
 

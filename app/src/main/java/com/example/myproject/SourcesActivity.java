@@ -3,8 +3,11 @@ package com.example.myproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,13 +26,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SourcesActivity extends AppCompatActivity {
+
     protected List<Source> liste_sources = new ArrayList<Source>();
     protected JSONArray json_sources;
+    protected ListView lvsources;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sources);
+
+        lvsources = findViewById(R.id.ListViewSources);
+
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="https://newsapi.org/v2/sources?apiKey=d31f5fa5f03443dd8a1b9e3fde92ec34&language=fr";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -52,10 +60,18 @@ public class SourcesActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ListView myListView = (ListView) findViewById(R.id.myListView);
+
         SourceAdapter adapter = new SourceAdapter(this, liste_sources);
-        myListView.setAdapter(adapter);
+        lvsources.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        lvsources.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(SourcesActivity.this, ArticleActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
