@@ -2,7 +2,10 @@ package com.example.myproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -21,6 +24,17 @@ public class ArticleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
+        ImageButton btn1 = (ImageButton)findViewById(R.id.imageButton);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent monIntent = new Intent(ArticleActivity.this,
+                        SourcesActivity.class);
+                // monIntent.putExtra("key1", "Epona");
+                //startActivity(monIntent);
+                startActivity(monIntent);
+            }
+        });
         try {
             this.RemplirLaListe();
         } catch (JSONException e) {
