@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Intent monIntent = new Intent(MainActivity.this, ArticleActivity.class);
                         monIntent.putExtra("jsonobject", response.toString());
+                        monIntent.putExtra("nom", "Le Monde");
                         startActivity(monIntent);
 
                     }

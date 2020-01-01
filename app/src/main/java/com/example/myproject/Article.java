@@ -1,6 +1,8 @@
 package com.example.myproject;
 
 
+import android.util.Log;
+
 public class Article {
 
     private String titre;
@@ -13,7 +15,12 @@ public class Article {
 
     public Article(String titre, String auteur, String date, String description, String url, String image) {
         this.titre = titre;
-        this.auteur = auteur;
+        if (auteur != null){
+            this.auteur = auteur;
+        }
+        else {
+            this.auteur = "Anonyme";
+        }
         this.date = date;
         this.description = description;
         this.url = url;

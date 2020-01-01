@@ -21,7 +21,7 @@ public class ArticleAdapter extends BaseAdapter {
         TextView tvTitre;
         TextView tvAuteur;
         TextView tvDate;
-        TextView tvSource;
+
     }
     public ArticleAdapter(Context context, List<Article> articles) {
         inflater = LayoutInflater.from(context);
@@ -45,6 +45,7 @@ public class ArticleAdapter extends BaseAdapter {
             holder.tvAuteur = (TextView) convertView.findViewById(R.id.txtAuteur);
             holder.tvDate = (TextView) convertView.findViewById(R.id.txtDate);
 
+
             convertView.setTag(holder);
         }
         else {
@@ -55,7 +56,6 @@ public class ArticleAdapter extends BaseAdapter {
         holder.tvTitre.setText(article.getTitre());
         holder.tvAuteur.setText(article.getAuteur());
         holder.tvDate.setText(article.getDate());
-        holder.tvSource.setText(article.getSource());
 
         ImageView image = convertView.findViewById(R.id.imageView);
         if (article.getImage() != "null"){
