@@ -1,7 +1,5 @@
 package com.example.myproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +23,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArticleActivity extends AppCompatActivity {
+public class ArticleActivity extends InternetErrorActivity {
 
     protected List<Article> liste_articles = new ArrayList<Article>();
     protected JSONArray json_articles;
@@ -37,6 +35,8 @@ public class ArticleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
         ImageButton btn1 = (ImageButton)findViewById(R.id.imageButton);
+
+        Boolean b = isNetworkConnectionAvailable();
 
         final RequestQueue queue = Volley.newRequestQueue(this);
 

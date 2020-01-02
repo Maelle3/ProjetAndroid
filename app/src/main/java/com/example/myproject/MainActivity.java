@@ -1,16 +1,7 @@
 package com.example.myproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,13 +10,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends InternetErrorActivity {
 
 
     @Override
@@ -34,7 +22,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         final RequestQueue queue = Volley.newRequestQueue(this);
+
+        Boolean b = isNetworkConnectionAvailable();
 
         String url_lemonde = "https://newsapi.org/v2/everything?apiKey=35bf446307124bdc80419062b1a6be02&language=fr&sources=le-monde";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url_lemonde, null,

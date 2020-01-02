@@ -1,27 +1,55 @@
 package com.example.myproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONObject;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 
 public class WebViewActivity extends AppCompatActivity {
 
-    @Override
+    public void checkNetworkConnection(){
+        AlertDialog.Builder builder =new AlertDialog.Builder(this);
+        builder.setTitle("Pas de Connection Internet");
+        builder.setMessage("Recommencez après avoir réétabli la connection");
+        builder.setNegativeButton("fermer", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public boolean isNetworkConnectionAvailable(){
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnected();
+        if(isConnected) {
+            Log.d("Network", "Connected");
+            return true;
+        }
+        else{
+            checkNetworkConnection();
+            Log.d("Network","Not Connected");
+            return false;
+        }
+    }
+
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_web_view);
 
@@ -34,39 +62,14 @@ public class WebViewActivity extends AppCompatActivity {
         TextView txt = (TextView) findViewById(R.id.Chargement);
         txt.setText("Vous allez être redirigé vers le site de " + nom);
 
+       Boolean b = isNetworkConnectionAvailable();
+
 
         WebView webView = findViewById(R.id.webview);
         String url = getIntent().getStringExtra("url");
         webView.loadUrl(url);
 
 
-
-        /*Button btn = (Button) findViewById(R.id.Button);
-
-        btn.setOnClickListener (new AdapterView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = "https://newsapi.org/v2/everything?apiKey=35bf446307124bdc80419062b1a6be02&language=fr&sources="+id;
-                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Intent monIntent = new Intent(WebViewActivity.this, ArticleActivity.class);
-                                monIntent.putExtra("jsonobject", response.toString());
-                                monIntent.putExtra("nom", nom );
-                                monIntent.putExtra("id", id);
-                                startActivity(monIntent);
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-                queue.add(request);
-            }
-
-        });*/
 
     }
 }

@@ -1,15 +1,12 @@
 package com.example.myproject;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,7 +22,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SourcesActivity extends AppCompatActivity {
+public class SourcesActivity extends InternetErrorActivity {
 
     protected List<Source> liste_sources = new ArrayList<Source>();
     protected JSONArray json_sources ;
@@ -39,6 +36,9 @@ public class SourcesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sources);
         lvsources = findViewById(R.id.ListViewSources);
+
+        Boolean b = isNetworkConnectionAvailable();
+
         final RequestQueue queue = Volley.newRequestQueue(this);
 
 

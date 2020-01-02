@@ -1,10 +1,7 @@
 package com.example.myproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -19,15 +16,16 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends InternetErrorActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        Boolean b = isNetworkConnectionAvailable();
 
 
         final String id_source = getIntent().getStringExtra("id_source");
@@ -78,7 +76,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Button btn2 = (Button) findViewById(R.id.Button);
 
-       /* btn2.setOnClickListener (new AdapterView.OnClickListener() {
+        btn2.setOnClickListener (new AdapterView.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = "https://newsapi.org/v2/everything?apiKey=35bf446307124bdc80419062b1a6be02&language=fr&sources="+id_source;
@@ -103,7 +101,9 @@ public class DetailActivity extends AppCompatActivity {
                 queue.add(request);
             }
 
-        });*/
+        });
+
+
     }
 }
 
