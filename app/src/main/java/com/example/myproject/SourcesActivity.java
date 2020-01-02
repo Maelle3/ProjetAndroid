@@ -28,59 +28,37 @@ import java.util.List;
 public class SourcesActivity extends AppCompatActivity {
 
     protected List<Source> liste_sources = new ArrayList<Source>();
-    protected JSONArray json_sources;
+    protected JSONArray json_sources ;
     protected ListView lvsources;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("testsource", "coucou1");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sources);
 
         lvsources = findViewById(R.id.ListViewSources);
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://newsapi.org/v2/sources?apiKey=d31f5fa5f03443dd8a1b9e3fde92ec34&language=fr";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    json_sources = response.getJSONArray("sources");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        });
 
         try {
             this.RemplirLaListe();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        SourceAdapter adapter = new SourceAdapter(this, liste_sources);
-        lvsources.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
-        lvsources.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SourcesActivity.this, ArticleActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
 
     private void RemplirLaListe() throws JSONException {
+        json_sources =  new JSONArray( getIntent().getStringExtra("json_sources"));
         liste_sources.clear();
-        for (int i = 0; i < json_sources.length(); i++) {
-            JSONObject article = json_sources.getJSONObject(i);
-            liste_sources.add(new Source(article.get("id").toString(), article.get("name").toString()));
+        for (int i = 0; i < json_sources.length(); i++){
+            JSONObject source = json_sources.getJSONObject(i);
+            liste_sources.add(new Source(source.get("id").toString(), source.get("name").toString()));
         }
     }
 }

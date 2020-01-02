@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,7 +19,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
                         monIntent.putExtra("jsonobject", response.toString());
                         monIntent.putExtra("nom", "Le Monde");
                         startActivity(monIntent);
-
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -49,12 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         queue.add(request);
-
-
-
-
-
-
 
     }
 }
