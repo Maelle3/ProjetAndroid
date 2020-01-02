@@ -71,12 +71,14 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent monIntent = new Intent(DetailActivity.this, WebViewActivity.class);
                 monIntent.putExtra("url", getIntent().getStringExtra("url_article"));
+                monIntent.putExtra("nom", nom );
+                monIntent.putExtra("id", id_source);
                 startActivity(monIntent);
             }});
 
         Button btn2 = (Button) findViewById(R.id.Button);
 
-        btn2.setOnClickListener (new AdapterView.OnClickListener() {
+       /* btn2.setOnClickListener (new AdapterView.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = "https://newsapi.org/v2/everything?apiKey=35bf446307124bdc80419062b1a6be02&language=fr&sources="+id_source;
@@ -101,7 +103,7 @@ public class DetailActivity extends AppCompatActivity {
                 queue.add(request);
             }
 
-        });
+        });*/
     }
 }
 
