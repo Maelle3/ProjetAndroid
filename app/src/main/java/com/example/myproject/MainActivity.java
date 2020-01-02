@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
                         Intent monIntent = new Intent(MainActivity.this, ArticleActivity.class);
                         monIntent.putExtra("jsonobject", response.toString());
                         monIntent.putExtra("nom", "Le Monde");
+                        monIntent.putExtra("id", "le-monde");
+
                         startActivity(monIntent);
                     }
                 }, new Response.ErrorListener() {

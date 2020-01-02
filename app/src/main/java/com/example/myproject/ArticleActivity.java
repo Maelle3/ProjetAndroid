@@ -39,6 +39,7 @@ public class ArticleActivity extends AppCompatActivity {
         final RequestQueue queue = Volley.newRequestQueue(this);
 
 
+//ACCEDER AUX CHOIX DES SOURCES
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

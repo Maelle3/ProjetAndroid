@@ -54,14 +54,22 @@ public class ArticleAdapter extends BaseAdapter {
         }
         Article article = articles.get(position);
         holder.tvTitre.setText(article.getTitre());
-        holder.tvAuteur.setText(article.getAuteur());
+        if (article.getAuteur() != "null"){
+            holder.tvAuteur.setText(article.getAuteur());
+
+        }
+        else {
+            holder.tvAuteur.setText("Anonyme");
+        }
         holder.tvDate.setText(article.getDate());
 
         ImageView image = convertView.findViewById(R.id.imageView);
         if (article.getImage() != "null"){
             Picasso.get().load(article.getImage()).into(image);
         }
-        else image.setImageResource(R.drawable.icone_news_background);
+        else {
+            image.setImageResource(R.mipmap.icone_news);
+        }
 
         return convertView;
     }

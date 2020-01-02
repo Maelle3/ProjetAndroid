@@ -39,6 +39,9 @@ public class SourcesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sources);
         lvsources = findViewById(R.id.ListViewSources);
+        final RequestQueue queue = Volley.newRequestQueue(this);
+
+
         try {
             Log.d("testsource", "coucou1");
             this.RemplirLaListe();
@@ -47,10 +50,30 @@ public class SourcesActivity extends AppCompatActivity {
             myListView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
+            lvsources.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                    String url = "https://newsapi.org/v2/everything?apiKey=35bf446307124bdc80419062b1a6be02&language=fr&sources="+liste_sources.get(position).getId();
+                    final String nom = liste_sources.get(position).getName();
+                    JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Intent monIntent = new Intent(SourcesActivity.this, ArticleActivity.class);
+                                    monIntent.putExtra("jsonobject", response.toString());
+                                    monIntent.putExtra("nom", nom );
+                                    startActivity(monIntent);
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
 
-
-
+                        }
+                    });
+                    queue.add(request);
+                }
+            });
         } catch (JSONException e) {
             e.printStackTrace();
         }
