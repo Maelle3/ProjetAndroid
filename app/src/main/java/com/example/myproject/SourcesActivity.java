@@ -35,15 +35,21 @@ public class SourcesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("testsource", "coucou1");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sources);
-
         lvsources = findViewById(R.id.ListViewSources);
-
-
         try {
+            Log.d("testsource", "coucou1");
             this.RemplirLaListe();
+            ListView myListView = (ListView) findViewById(R.id.ListViewSources);
+            SourceAdapter adapter = new SourceAdapter(this, liste_sources);
+            myListView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
+
+
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -54,11 +60,15 @@ public class SourcesActivity extends AppCompatActivity {
 
 
     private void RemplirLaListe() throws JSONException {
-        json_sources =  new JSONArray( getIntent().getStringExtra("json_sources"));
+
+        JSONObject jsont =  new JSONObject(getIntent().getStringExtra("json_sources"));;
+        json_sources = jsont.getJSONArray("sources");
         liste_sources.clear();
         for (int i = 0; i < json_sources.length(); i++){
             JSONObject source = json_sources.getJSONObject(i);
             liste_sources.add(new Source(source.get("id").toString(), source.get("name").toString()));
         }
+        Log.d("testsource","coucou4");
+
     }
 }

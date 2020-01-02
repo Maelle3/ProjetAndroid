@@ -2,17 +2,19 @@
 <LinearLayout
     android:id="@+id/Layout1"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/fond_tres_clair"
+    >
 
     <LinearLayout
         android:id="@+id/Layout2"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="horizontal"
-        android:background="#222222">
+
+        >
 
         <TextView
             android:id="@+id/TextView"
@@ -24,7 +26,8 @@
             android:layout_weight="1"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:textColor="#EEEEEE"/>
+            android:textColor="#EEEEEE"
+            android:background="#222222"/>
 
 
 
@@ -32,10 +35,11 @@
 
     <ListView
         android:id="@+id/ListViewSources"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="0.8"
-        android:background="@drawable/fond_tres_clair"/>
+        android:background="@drawable/fond_tres_clair"
+        />
 
 
 </LinearLayout>
