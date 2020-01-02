@@ -45,9 +45,8 @@ public class SourcesActivity extends AppCompatActivity {
         try {
             Log.d("testsource", "coucou1");
             this.RemplirLaListe();
-            ListView myListView = (ListView) findViewById(R.id.ListViewSources);
             SourceAdapter adapter = new SourceAdapter(this, liste_sources);
-            myListView.setAdapter(adapter);
+            lvsources.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
             lvsources.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,6 +55,8 @@ public class SourcesActivity extends AppCompatActivity {
 
                     String url = "https://newsapi.org/v2/everything?apiKey=35bf446307124bdc80419062b1a6be02&language=fr&sources="+liste_sources.get(position).getId();
                     final String nom = liste_sources.get(position).getName();
+                    final String identifiant = liste_sources.get(position).getId();
+
                     JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                             new Response.Listener<JSONObject>() {
                                 @Override
@@ -63,6 +64,8 @@ public class SourcesActivity extends AppCompatActivity {
                                     Intent monIntent = new Intent(SourcesActivity.this, ArticleActivity.class);
                                     monIntent.putExtra("jsonobject", response.toString());
                                     monIntent.putExtra("nom", nom );
+                                    monIntent.putExtra("id", identifiant );
+
                                     startActivity(monIntent);
                                 }
                             }, new Response.ErrorListener() {

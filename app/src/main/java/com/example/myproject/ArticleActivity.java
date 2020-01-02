@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ public class ArticleActivity extends AppCompatActivity {
 
     protected List<Article> liste_articles = new ArrayList<Article>();
     protected JSONArray json_articles;
+
 
 
     @Override
@@ -77,11 +79,30 @@ public class ArticleActivity extends AppCompatActivity {
         catch (JSONException e) {
             e.printStackTrace();
         }
-        ListView myListView = (ListView) findViewById(R.id.ListViewArticles);
+
+        ListView lvArticle = (ListView) findViewById(R.id.ListViewArticles);
         ArticleAdapter adapter = new ArticleAdapter(this, liste_articles);
-        myListView.setAdapter(adapter);
+        lvArticle.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        Log.d("jsontest3", "Coucou");
+
+        lvArticle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent monIntent = new Intent(ArticleActivity.this, DetailActivity.class);
+                monIntent.putExtra("author", liste_articles.get(position).getAuteur());
+                monIntent.putExtra("date", liste_articles.get(position).getDate());
+                monIntent.putExtra("description", liste_articles.get(position).getDescription());
+                monIntent.putExtra("url_image", liste_articles.get(position).getImage());
+                monIntent.putExtra("titre", liste_articles.get(position).getTitre());
+                monIntent.putExtra("url_article", liste_articles.get(position).getUrl());
+                monIntent.putExtra("nom_source", getIntent().getStringExtra("nom"));
+                monIntent.putExtra("id_source", getIntent().getStringExtra("id"));
+                startActivity(monIntent);
+            }
+        });
+
+
+
     }
 
 

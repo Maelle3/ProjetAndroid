@@ -1,9 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Layout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    android:weightSum="100"
+    android:orientation="vertical"
+    android:background="@drawable/fond_tres_clair">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/Layout2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_weight="0.01"
+        android:orientation="horizontal"
+        android:background="#222222">
+
+        <Button
+            android:id="@+id/Button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="20dp"
+
+            android:background="#222222"
+            android:text=" Retour à la liste "
+            android:textColor="#EEEEEE"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/TextView"
+            android:layout_width="332dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:text="Remplir Source"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_weight="0.8"
+            android:textColor="#EEEEEE"/>
+
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/Layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:weightSum="100"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/Layout4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="70"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Remplir Titre"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_weight="35"
+                android:textColor="#111111"/>
+
+            <TextView
+                android:id="@+id/txtAuteur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Remplir Auteur"
+                android:textSize="20sp"
+                android:layout_weight="20"
+                android:textColor="#111111"/>
+
+            <TextView
+                android:id="@+id/txtSource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Remplir Source"
+                android:textSize="16sp"
+                android:textStyle="italic"
+
+                android:layout_weight="20"
+                android:textColor="#111111"/>
+
+
+
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="30"
+            android:text="Remplir Date"
+            android:textSize="20sp"
+            android:textColor="#111111"
+            />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:text="Remplir Description"
+        android:layout_weight="30"
+        android:textSize="20sp"
+        android:textColor="#111111"/>
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:padding="3dp"
+        android:layout_weight="25"
+        app:srcCompat="@mipmap/icone_news" />
+
+    <Button
+        android:id="@+id/lire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="25"
+        android:text="Lire l'article"
+        android:textSize="35sp"
+        android:background="#333333"
+        android:textColor="#EEEEEE"
+
+        />
+
+
+
+
+</LinearLayout>

@@ -68,7 +68,7 @@ public class ArticleAdapter extends BaseAdapter {
             Picasso.get().load(article.getImage()).into(image);
         }
         else {
-            image.setImageResource(R.mipmap.icone_news);
+            image.setImageResource(R.mipmap.image_null);
         }
 
         return convertView;
